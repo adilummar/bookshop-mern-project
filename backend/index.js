@@ -3,9 +3,18 @@ import { PORT, mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
 import { Book } from "./models/bookModel.js";
 import booksRoutes from "./routes/booksRoutes.js"
+import cors from 'cors'
 const app = express()
 
 app.use(express.json())
+
+//using middleware for cors
+app.use(cors({
+    origin:'http://localhost:3000',
+    methods:['GET','POST','PUT','DELETE'],
+    allowedHeaders:['Content-Type'],
+}));
+
 
 app.get('/', (req,res)=>{
     return res.send("welcome to MERN app ")
